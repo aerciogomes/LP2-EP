@@ -63,31 +63,57 @@ int main(){
 
 				switch(valor){
 					case 1: //busca Usuario
-						ExibeUsuarios(conn2); // falta configurar o acesso ao usuario apos a busca
+						ExibeUsuarios(conn2, user_id); // feito, mas com algumas coisas faltando
 						aux = 2;
 						break;
 					case 2: // Busca grupo
 						ExibeGrupo(conn2); // falta configurar o acesso ao grupo apos a busca
-						aux = 3;
-						break;
-					case 3: //alterar dados
-						break;
-					case 4: // vermural
 						aux = 4;
 						break;
+					case 3: //alterar dados
+						cout << "FAZER-OU NAO" <<endl;
+						break;
+					case 4: // vermural
+						aux = 5;
+						break;
 					case 5: // ver amigos
-						ExibeAmigos(conn2,user_id); // falta configurar o acesso ao usuario apos a busca
-						aux = 2;
+						ExibeAmigos(conn2,user_id); // feito, mas com algumas coisas faltando
+						aux = 3;
 						break;
 					case 6: // ver solicitações
-						ConfigurarSolicitacoes(conn2,user_id);
+						ConfigurarSolicitacoes(conn2,user_id); // ok
 						break;
 					case 7: // lista bloqueados
+						ConfigurarBloqueio(conn2,user_id); // ok
 						break;
 					case 9: // sair
 						cout << "Adeus" << endl;
 						aux = 0;
 						break;
+				}
+			}
+			if(aux == 2){
+				cout << "\n\n ****************************** \n" <<endl;
+				ExibeUsuarios(conn2, user_id);
+				cout << "Campo de visita" <<endl;
+				cout << "Digite o numero do usuario a ser visitado ou '0' para sair " <<endl;
+				cin >> user_idvisita;
+				if(user_idvisita == "0"){
+					aux = 1;
+				}else{
+					ConfigurarVisita(conn2, user_id, user_idvisita); // terminar - bloqueio
+				}
+			}
+			if(aux == 3){
+				cout << "\n\n ****************************** \n" <<endl;
+				ExibeAmigos(conn2,user_id);
+				cout << "Campo de visita" <<endl;
+				cout << "Digite o numero do usuario a ser visitado ou '0' para sair " <<endl;
+				cin >> user_idvisita;
+				if(user_idvisita == "0"){
+					aux = 1;
+				}else{
+					ConfigurarVisita(conn2, user_id, user_idvisita); // terminar - bloqueio
 				}
 			}
 			
